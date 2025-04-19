@@ -5,13 +5,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-home',
   standalone: true,
   imports: [RouterLink],
-  template: `
-    <div class="container">
-      <h1>Welcome!</h1>
-      <p>Please log in to continue.</p>
-      <a routerLink="/login">Go to Login</a>
-    </div>
-  `,
+  templateUrl: "./home.component.html",
   styles: `
     .container {
       display: flex;
