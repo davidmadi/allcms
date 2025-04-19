@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,9 +11,25 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     MatButtonModule,
     RouterLink,
     RouterOutlet
+  ],  providers: [
+    AuthService
   ],
+
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) { }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/home']);
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
 }
